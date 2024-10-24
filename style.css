@@ -1,0 +1,154 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+    width: 100%;
+    height: 70vh;
+    color: white;
+    padding: 1rem;
+}
+
+.bigheader {
+    font-size: 6rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: #e2e4e5;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    /* Adjust gap for images */
+    margin-bottom: 2rem;
+    /* Space below the image grid */
+}
+
+.images-grid img {
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Transition for hover effects */
+    max-width: 100%;
+    /* Ensure responsive behavior */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.images-grid img:hover {
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    /* Stronger shadow on hover */
+}
+
+footer {
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    text-align: center;
+    width: 100%;
+}
+
+/* Button Styles */
+.btn,
+.btnnotavail {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    margin: 10px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+    background-color: #3e7acb;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    background-color: #366ab2;
+    transform: translateY(0);
+}
+
+.banner {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #4a90e2, #9013fe);
+    width: 100%;
+    height: 10vh;
+    color: white;
+    padding: 1rem;
+}
+
+.centersec {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.btnnotavail {
+    cursor: not-allowed;
+    background-color: #617488;
+}
