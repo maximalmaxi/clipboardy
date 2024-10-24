@@ -7,22 +7,31 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clipboardy</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg" href="favicon.svg" />
 </head>
 
 <body>
     <div class="header">
         <h1 class="bigheader">Clipboardy</h1>
         <h2>Advancing clipboards to infinity and beyond</h2>
-        <p>Launching on 01.12.2024 🎉</p>
+        <p>Launching soon! 🎉</p>
         <div>
-            <button class="btnnotavail">Documentation</button>
-            <button class="btnnotavail">- Contribute -</button>
+            <button class="btn" onclick="goto('documentation/docs.html')">Documentation</button>
+            <button class="btn" onclick="goto('#contribute')">- Contribute -</button>
             <button class="btn" onclick="goto('#download')">Download</button>
             <button class="btn" onclick="goto('documentation/docs.html#features')">Features</button>
         </div>
     </div>
 
     <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>Clipboardy</h2>
+                <p>Clipboardy is a user-friendly clipboard management application that allows you to save, organize, and
+                    encrypt your clipboard clips. With features like auto-saving, clipboard monitoring, and support for
+                    various content types, Clipboardy enhances your clipboard experience.</p>
+            </div>
+        </div>
         <div class="grid">
             <div class="card">
                 <h2>Privacy</h2>
@@ -44,19 +53,39 @@
             <img src="Showcase3.png" alt="Green">
         </div>
 
-        <div class="banner">
-            <h1>Download</h1>
+        <div class="grid">
+            <div>
+                <div class="banner">
+                    <h1>Download</h1>
+                </div>
+                <br> <br>
+                <section id="download" class="centersec">
+                    <p>Make sure to read the Download Documentation (not available yet)
+                        before. You can donwload the files from GitHub, follow the documentation for more details.</p>
+                    <button class="btnnotavail">Download from GitHub</button>
+                    <p>Due to the programm not beeing released yet, the download isn't available right now.</p>
+                </section>
+            </div>
+            <div>
+                <div class="banner">
+                    <h1>Contributing</h1>
+                </div>
+                <br> <br>
+                <section id="contribute" class="centersec">
+                    <p>The Clipboardy repository is meant to be beginner friendly and welcoming, therefore
+                        contributions to Clipboardy are alyways welcome!
+                        To add your own ideas and improvements, please
+                        follow <a href="documentation/docs.html#contributing">this contributing guide</a> first at
+                        read other articles for further help.
+                    </p>
+                </section>
+            </div>
         </div>
-        <br> <br>
-        <section id="download" class="centersec">
-            <p>Make sure to read the Download Documentation (not available yet)
-                before. You can donwload the files from GitHub, follow the documentation for more details.</p>
-            <button class="btnnotavail">Download from GitHub</button>
-            <p>Due to the programm not beeing released yet, the download isnt available now.</p>
-        </section>
 
         <footer>
-            &copy; 2024 maximalmaxx. Released under the MIT License.
+            &copy; 2024 Clipboardy. Released under the MIT License.
+            <a href="https://github.com/maximalmaxx/clipboardy" target="_blank">GitHub</a> |
+            <a href="documentation/docs.html#contributing" target="_blank">Contribute</a>
         </footer>
     </div>
 

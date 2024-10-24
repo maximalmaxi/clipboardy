@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clipboardy Documentation</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 </head>
 
 <body>
@@ -14,16 +15,68 @@
             <h2>Contents</h2>
             <nav>
                 <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#getting-started">Getting Started</a></li>
                     <li><a href="#features">Features</a></li>
+                    <li><a href="#contributing">Contributing</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                    <li><a href="../index.html">Go back</a></li>
                 </ul>
             </nav>
         </aside>
         <main class="content">
             <section id="introduction">
                 <h1>Introduction</h1>
+                <h2><strong>Please note that some of the guides aren't applicable due to the programm not being released
+                        yet.</strong></h2>
                 <p>Welcome to the Clipboardy documentation. This guide will help you navigate the features and
                     functionality of Clipboardy, along with tutorials on installation and contributing via GitHub.</p>
                 <strong>Note: Installation assumes basic familiarity with programming and GitHub.</strong>
+            </section>
+
+            <section id="getting-started">
+                <h1>Getting Started</h1>
+                <p>This step-by-step guide will help you get Clipboardy up and running.</p>
+
+                <h3>Prerequisites</h3>
+                <p>To install Clipboardy, you’ll need the following set up:</p>
+                <ol>
+                    <li>Python (newest version)</li>
+                    <li>Required pip dependencies (listed below)</li>
+                    <li>The latest version of Clipboardy from GitHub</li>
+                </ol>
+
+                <h3>Step 1: Installing Python</h3>
+                <p>If you don’t have Python installed on your system, you can download it from the <a
+                        href="https://www.python.org/downloads/">official Python website</a>. Make sure to select "Add
+                    Python to PATH" during the installation process.</p>
+
+                <h3>Step 2: Installing pip Dependencies</h3>
+                <p>Clipboardy requires the following dependencies to work properly. You can install them all at once
+                    using the <code>requirements.txt</code> file, found on GitHub, or manually:</p>
+                <ol>
+                    <li><code>pyperclip</code> – for clipboard management</li>
+                    <li><code>cryptography</code> – for encryption features</li>
+                    <li><code>validators</code> – to validate URLs</li>
+                    <li><code>customtkinter</code> – for a user-friendly interface</li>
+                </ol>
+                <br>
+                <p>To install these dependencies using the <code>requirements.txt</code> file, wich you will need to
+                    download first, run this command:</p>
+                <pre><code>pip install -r requirements.txt</code></pre>
+                <p>Alternatively, you can install them manually by running:</p>
+                <pre><code>pip install pyperclip cryptography validators customtkinter</code></pre>
+
+                <h3>Step 3: Downloading and Installing Clipboardy</h3>
+                <p>Once you’ve installed Python and the necessary dependencies, head to the <a
+                        href="https://github.com/maximalmaxx/clipboardy">Clipboardy GitHub repository</a> and go to the
+                    "Releases"
+                    section. Download the latest release of Clipboardy, unzip the files, and navigate to the folder in
+                    your terminal.</p>
+
+                <p>To run Clipboardy, use this command, or just double click <code>clipboardy.py</code>:</p>
+                <pre><code>python clipboardy.py</code></pre>
+                <br>
             </section>
 
             <section id="features">
@@ -41,15 +94,78 @@
                 </p>
 
                 <h3>Functions</h3>
-                <p>Next to the saved clip in the main window are two buttons, the first one beeing for coping the
+                <p>Next to the saved clip in the main window are two buttons, the first one being for coping the
                     clip again and the second one to delete the clip. To delete all clips, press the "Delete All" button
                     in the buttom section.
                 </p>
 
-                <h3>Quick Search and Advanced Filtering (Upcoming)</h3>
+                <h3>Searching and filtering</h3>
                 <p>The searchbar allows you to search specific clips by thier name. The filter function is still
                     in development and will be released soon.
                 </p>
+            </section>
+
+            <section id="contributing">
+                <h1>Contributing</h1>
+                <p>If you want to support the Clipboardy project and add your own ideas and improvements, please follow
+                    these guidelines:</p>
+
+                <h3>Getting Started</h3>
+                <p>To contribute to Clipboardy, first, fork the repository on GitHub and clone it to your local machine.
+                    You can do this by running:</p>
+                <pre><code>git clone https://github.com/YOUR_USERNAME/clipboardy.git</code></pre>
+                <p>Make sure to replace <code>YOUR_USERNAME</code> with your actual GitHub username.</p>
+
+                <h3>Branching</h3>
+                <p>Before making any new changes, create a new branch for your feature or bug fix. This keeps the master
+                    branch clean and allows for easier collaboration. Use the following command:</p>
+                <pre><code>git checkout -b your-feature-name</code></pre>
+
+                <h3>Writing Code</h3>
+                <p>When writing code, please adhere to the following conventions:</p>
+                <ul>
+                    <li><strong>Follow PEP 8:</strong> Make sure your Python code roughly similar to the PEP 8 style
+                        guide for Python code to maintain readability.</li>
+                    <li><strong>Comment Your Code:</strong> Write clear comments explaining your logic, especially in
+                        complex sections, to avoid confusion for other developers.</li>
+                    <li><strong>Function Documentation:</strong> Use docstrings to document your functions and classes,
+                        to explain their purpose.</li>
+                </ul>
+
+                <h3>Testing</h3>
+                <p>Before submitting your changes, ensure that you have tested your code. This helps maintaining our
+                    projects stability.
+                </p>
+
+                <h3>Submitting Changes</h3>
+                <p>Once you're satisfied with your changes, commit them with a clear and concise commit message:</p>
+                <pre><code>git commit -m "Add a brief description of the changes"</code></pre>
+                <p>Push your changes to your forked repository:</p>
+                <pre><code>git push origin your-feature-name</code></pre>
+                <p>Finally, create a pull request on the main repository. Describe the changes you made, why you made
+                    them, and any relevant details that can help us understand your contribution.</p>
+
+                <h3>Standard Rules and Expectations</h3>
+                <ul>
+                    <li><strong>Be Respectful:</strong> Treat all contributors with respect.
+                        Constructive feedback is always encouraged and helps making the software better.</li>
+                    <li><strong>Maintain a Positive Environment:</strong> A welcoming environment is great for possible
+                        newcomers and encourage them to contribute if they have fixes or ideas.</li>
+                    <li><strong>Issue Reporting:</strong> If you find any bugs or issues, please report them in the <a
+                            href="https://github.com/maximalmaxx/clipboardy/issues">issues section</a> of the GitHub
+                        repository. Include as much detail as possible, as it will make the issue easy to understand.
+                    </li>
+                </ul>
+
+                <h3>Thank You!</h3>
+                <p>Your contributions are what make Clipboardy a better programm for everyone! Thank you for your
+                    interest
+                    in contributing to this project and your effort!</p>
+            </section>
+            <section id="github">
+                <h1>GitHub</h1>
+                <p>The GitHub repository containing all scripts and files for the installation can be found <a
+                        href="https://github.com/clipboardy">here</a></p>
             </section>
         </main>
     </div>
