@@ -24,24 +24,12 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-### Use releases for easy download or:
+A detailed description and guide on installing the programm can be found on the projects documentation website.
 
-1. **Clone the Repository**:
-```bash
-  git clone https://github.com/clipboardy/clipboardy.git
-  cd clipboardy
-```
-2. **Install Dependencies**
-```bash
-  pip install -r requirements.txt
-```
-3. **Run the Application**
-```bash
-  python clipui.py
-```
 ## Contributing
 
-If you'd like to contribute to Clipboardy, please fork the repository and submit a pull request.
+If you'd like to contribute to Clipboardy and add your own ideas and fixes, please follow the guide found on
+the projects documentation website.
 
 ## Acknowledgements
 
