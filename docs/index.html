@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clipboardy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="bigheader">Clipboardy</h1>
+        <h2>Advancing clipboards to infinity and beyond</h2>
+        <p>Launching on 01.12.2024 🎉</p>
+        <div>
+            <button class="btnnotavail">Documentation</button>
+            <button class="btnnotavail">- Contribute -</button>
+            <button class="btn" onclick="goto('#download')">Download</button>
+            <button class="btn" onclick="goto('documentation/docs.html#features')">Features</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>Privacy</h2>
+                <p>All your saved clipboards are automatically secured with a key before beeing stored locally.</p>
+            </div>
+            <div class="card">
+                <h2>Use Cases</h2>
+                <p>Clipboardy helps you save everything you copy for later, either automatically or manually.</p>
+            </div>
+            <div class="card">
+                <h2>Modern and Intuitive</h2>
+                <p>With a modern and easy UI, Clipboardy is there to assist in every scenario.</p>
+            </div>
+        </div>
+
+        <div class="grid images-grid">
+            <img src="Showcase1.png" alt="Darkmode">
+            <img src="Showcase2.png" alt="Lightmode">
+            <img src="Showcase3.png" alt="Green">
+        </div>
+
+        <div class="banner">
+            <h1>Download</h1>
+        </div>
+        <br> <br>
+        <section id="download" class="centersec">
+            <p>Make sure to read the Download Documentation (not available yet)
+                before. You can donwload the files from GitHub, follow the documentation for more details.</p>
+            <button class="btnnotavail">Download from GitHub</button>
+            <p>Due to the programm not beeing released yet, the download isnt available now.</p>
+        </section>
+
+        <footer>
+            &copy; 2024 maximalmax. Released under the MIT License.
+        </footer>
+    </div>
+
+    <script>
+        function goto(link) {
+            window.location.href = link;
+        }
+    </script>
+</body>
+
+</html>
