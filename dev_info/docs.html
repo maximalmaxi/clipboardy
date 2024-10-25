@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboardy DevDocs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Contents</h2>
+            <nav>
+                <ul>
+                    <li><a href="#devdocs">DevDocs</a></li>
+                    <li><a href="#roadmap">Functions</a></li>
+                    <li><a href="#features">Roadmap</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="devdocs">
+                <h1>DevDocs</h1>
+                <p>Welcome to the Clipboardy DevDocs. Here we will break down the code of Clipboardy,
+                    explaining its functions and a roadmap for the future. Everything you need to understand the
+                    programm
+                    and contribute to make it a better place. <strong>Please also reference the normal docs, for a
+                        better understanding of Clipboardys workflow and expectations.</strong></p>
+            </section>
+
+            <section id="functions">
+                <h1>Clipboardy Functions</h1>
+                <p>This section provides details on all functions defined within the Clipboardy application, covering
+                    their purposes, parameters, and usage.</p>
+
+                <div class="function">
+                    <h2>load_settings()</h2>
+                    <p><strong>Purpose:</strong> Loads the autosave setting from a settings file.</p>
+                    <p><strong>Returns:</strong> <code>bool</code> - the autosave setting (defaults to
+                        <code>False</code> if settings file is absent or corrupted).
+                    </p>
+                    <p><strong>Description:</strong> Reads the <code>settings.json</code> file to retrieve the autosave
+                        setting and handles errors if the file is corrupted.</p>
+                </div>
+
+                <div class="function">
+                    <h2>save_settings()</h2>
+                    <p><strong>Purpose:</strong> Saves the current autosave setting to a settings file.</p>
+                    <p><strong>Description:</strong> Writes the autosave value as a JSON object to
+                        <code>settings.json</code>.
+                    </p>
+                </div>
+
+                <div class="function">
+                    <h2>generate_key()</h2>
+                    <p><strong>Purpose:</strong> Generates a new encryption key.</p>
+                    <p><strong>Returns:</strong> <code>bytes</code> - the generated encryption key.</p>
+                    <p><strong>Description:</strong> Creates and saves an encryption key using
+                        <code>cryptography.Fernet</code> if none exists.
+                    </p>
+                </div>
+
+                <div class="function">
+                    <h2>load_key()</h2>
+                    <p><strong>Purpose:</strong> Loads the encryption key from the file.</p>
+                    <p><strong>Returns:</strong> <code>bytes</code> - the encryption key.</p>
+                    <p><strong>Description:</strong> Reads the encryption key from <code>key.key</code> to facilitate
+                        encryption/decryption.</p>
+                </div>
+
+                <div class="function">
+                    <h2>load_clips()</h2>
+                    <p><strong>Purpose:</strong> Loads saved clipboard entries.</p>
+                    <p><strong>Returns:</strong> <code>list</code> - a list of saved clipboard objects.</p>
+                    <p><strong>Description:</strong> Reads <code>clips.json</code> and returns clipboard data,
+                        initializing it if the file is empty or corrupted.</p>
+                </div>
+
+                <div class="function">
+                    <h2>save_clips()</h2>
+                    <p><strong>Purpose:</strong> Saves the current clipboard entries to a file.</p>
+                    <p><strong>Description:</strong> Writes <code>clipsObj</code>, containing clipboard entries, to
+                        <code>clips.json</code> in JSON format.
+                    </p>
+                </div>
+
+                <div class="function">
+                    <h2>encrypt_clip(clip)</h2>
+                    <p><strong>Parameters:</strong> <code>clip</code> (str) - the text to be encrypted.</p>
+                    <p><strong>Returns:</strong> <code>str</code> - base64-encoded encrypted text.</p>
+                    <p><strong>Description:</strong> Uses the encryption key to encode clipboard data.</p>
+                </div>
+
+                <div class="function">
+                    <h2>decrypt_clip(encrypted_clip)</h2>
+                    <p><strong>Parameters:</strong> <code>encrypted_clip</code> (str) - the encrypted clipboard entry.
+                    </p>
+                    <p><strong>Returns:</strong> <code>str</code> - the decrypted text.</p>
+                    <p><strong>Description:</strong> Decodes the encrypted clipboard data using the encryption key.</p>
+                </div>
+
+                <div class="function">
+                    <h2>populate_clips_table(frame, clips_to_display=None)</h2>
+                    <p><strong>Parameters:</strong> <code>frame</code> - UI frame where clips are displayed;
+                        <code>clips_to_display</code> (list) - optional list of clips to display (defaults to all
+                        clips).
+                    </p>
+                    <p><strong>Description:</strong> Updates the UI table with decrypted clipboard entries and allows
+                        users to copy or delete individual entries.</p>
+                </div>
+
+                <div class="function">
+                    <h2>delete_clip_from_ui(index)</h2>
+                    <p><strong>Parameters:</strong> <code>index</code> (int) - position of the clip in
+                        <code>clipsObj</code>.
+                    </p>
+                    <p><strong>Description:</strong> Removes the clip from both <code>clipsObj</code> and the UI, then
+                        saves the updated list.</p>
+                </div>
+
+                <div class="function">
+                    <h2>UI()</h2>
+                    <p><strong>Purpose:</strong> Initializes and displays the main UI for Clipboardy.</p>
+                    <p><strong>Description:</strong> Sets up the main window with sections for searching, displaying,
+                        and managing clips.</p>
+                </div>
+
+                <div class="function">
+                    <h2>toggle_autosave()</h2>
+                    <p><strong>Purpose:</strong> Enables or disables autosave and saves the updated setting.</p>
+                    <p><strong>Description:</strong> Switches the <code>autosave</code> state and calls
+                        <code>save_settings()</code> to save it.
+                    </p>
+                </div>
+
+                <div class="function">
+                    <h2>save_clip()</h2>
+                    <p><strong>Purpose:</strong> Saves the current clipboard content, if available.</p>
+                    <p><strong>Description:</strong> Encrypts the clipboard entry, detects its content type, and appends
+                        it to <code>clipsObj</code>, followed by updating the UI.</p>
+                </div>
+
+                <div class="function">
+                    <h2>determine_content_type(current_clip)</h2>
+                    <p><strong>Parameters:</strong> <code>current_clip</code> (str) - clipboard text to classify.</p>
+                    <p><strong>Returns:</strong> <code>str</code> - detected content type (URL, Email, Text, etc.).</p>
+                    <p><strong>Description:</strong> Detects if the clipboard content matches specific types using
+                        validation.</p>
+                </div>
+
+                <div class="function">
+                    <h2>delete_all_clips()</h2>
+                    <p><strong>Purpose:</strong> Clears all saved clipboard entries and updates the UI.</p>
+                    <p><strong>Description:</strong> Empties <code>clipsObj</code>, then saves and refreshes the
+                        clipboard display.</p>
+                </div>
+
+                <div class="function">
+                    <h2>search_clips(event=None)</h2>
+                    <p><strong>Purpose:</strong> Filters displayed clips based on user input.</p>
+                    <p><strong>Description:</strong> Searches through <code>clipsObj</code> to show only entries that
+                        match the search term.</p>
+                </div>
+
+                <div class="function">
+                    <h2>main()</h2>
+                    <p><strong>Purpose:</strong> Initializes the application and starts clipboard monitoring.</p>
+                    <p><strong>Description:</strong> Sets up encryption, loads settings, and starts the UI, while
+                        running clipboard monitoring in a separate thread.</p>
+                </div>
+
+                <div class="function">
+                    <h2>monitor_clipboard()</h2>
+                    <p><strong>Purpose:</strong> Continuously monitors the clipboard for changes.</p>
+                    <p><strong>Description:</strong> Checks the clipboard every second, saving new entries if autosave
+                        is enabled and the content is unique.</p>
+                </div>
+            </section>
+
+            <section id="roadmap">
+                <h1>Project Roadmap</h1>
+                <p>This roadmap outlines key milestones and upcoming phases for Clipboardy, highlighting important
+                    development goals and future features.</p>
+
+                <div class="roadmap-container">
+                    <!-- Milestone 1 -->
+                    <div class="milestone">
+                        <h2>Milestone 1: Initial Release</h2>
+                        <ul>
+                            <li>Set up core clipboard functionality</li>
+                            <li>Implement encryption and decryption</li>
+                            <li>Develop UI for clipboard display</li>
+                            <li>Release version 1.0.0 on GitHub</li>
+                        </ul>
+                        <p class="status complete">Status: Complete</p>
+                    </div>
+
+                    <!-- Milestone 2 -->
+                    <div class="milestone">
+                        <h2>Milestone 2: Improved User Interface</h2>
+                        <ul>
+                            <li>Enhance UI/UX for better usability</li>
+                            <li>Implement autosave toggle and settings panel</li>
+                            <li>Multiple settings for appereance and more</li>
+                            <li>Add search and delete functionalities</li>
+                            <li>Pinning and Favorite clips</li>
+                            <li>Release version 1.0.5</li>
+                        </ul>
+                        <p class="status ongoing">Status: In Progress</p>
+                    </div>
+
+                    <!-- Milestone 3 -->
+                    <div class="milestone">
+                        <h2>Milestone 3: Advanced Features</h2>
+                        <ul>
+                            <li>Shortcuts for easy navigation</li>
+                            <li>Integrate advanced clipboard content recognition</li>
+                            <li>Add support for multiple content types (e.g., text, images, videos)</li>
+                            <li>Include export and import options for saved clips</li>
+                            <li>History management (automatically delete clips after set time)</li>
+                            <li>Filters to filter by content type</li>
+                            <li>Advanced analyses of usage to display most used clips at the top</li>
+                            <li>Release version 1.5.0</li>
+                        </ul>
+                        <p class="status upcoming">Status: Upcoming</p>
+                    </div>
+
+                    <!-- Milestone 4 -->
+                    <div class="milestone">
+                        <h2>Milestone 4: Collaborative and Community Features</h2>
+                        <ul>
+                            <li>Enable real-time collaboration for shared clipboards</li>
+                            <li>Cloud backups of clips</li>
+                            <li>Allow custom plugins or integrations</li>
+                            <li>Release version 2.0.0</li>
+                            <li>Multi-Platform support</li>
+                            <li>Integrations for other apps</li>
+                        </ul>
+                        <p class="status future">Status: Future</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+
+</html>

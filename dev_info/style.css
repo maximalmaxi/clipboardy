@@ -1,0 +1,194 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    height: 100vh;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #894ae2;
+    /* Fresh look */
+    color: white;
+    width: 250px;
+    padding: 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    /* Shadow for depth */
+}
+
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #5527b0;
+    /* Border below header */
+    padding-bottom: 0.5rem;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 1.5rem 0;
+    /* Increased margin for better spacing */
+}
+
+.sidebar nav ul li a {
+    color: #f4f4f9;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    /* Added padding transition */
+    padding: 0.5rem;
+    /* Padding for clickable area */
+}
+
+.sidebar nav ul li a:hover {
+    color: #d3e451;
+    padding-left: 1rem;
+    /* Shift link on hover */
+}
+
+/* Main content */
+.content {
+    margin-left: 270px;
+    padding: 2rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.content h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #634ae2;
+    /* Border color */
+    padding-bottom: 0.5rem;
+}
+
+.content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    /* Increased font size for readability */
+}
+
+/* Headings for sections */
+h3 {
+    margin-top: 1.5rem;
+    /* Spacing above section headings */
+    margin-bottom: 0.5rem;
+    /* Spacing below section headings */
+}
+
+/* Code block styling */
+pre {
+    background-color: #f9f9f9;
+    /* Light background for code blocks */
+    border-left: 3px solid #4a90e2;
+    /* Left border for emphasis */
+    padding: 1rem;
+    overflow: auto;
+    /* Allow scrolling for long code */
+}
+
+div.function {
+    border-bottom: 2px solid purple;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+}
+
+#roadmap {
+    padding: 2rem;
+    background-color: #f9f9f9;
+    margin-top: 2rem;
+    border-radius: 8px;
+}
+
+.roadmap-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.milestone {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.milestone h2 {
+    color: #333;
+}
+
+.milestone ul {
+    padding-left: 1.5rem;
+    list-style: disc;
+}
+
+.status {
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.status.complete {
+    color: #fff;
+    background-color: #4CAF50;
+}
+
+.status.ongoing {
+    color: #fff;
+    background-color: #FFA500;
+}
+
+.status.upcoming {
+    color: #fff;
+    background-color: #007BFF;
+}
+
+.status.future {
+    color: #fff;
+    background-color: #6C757D;
+}
+
+
+@media (max-width: 500px) {
+    .sidebar {
+        width: 0;
+        height: auto;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+}
