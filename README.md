@@ -29,7 +29,8 @@ A detailed description and guide on installing the programm can be found on the 
 ## Contributing
 
 If you'd like to contribute to Clipboardy and add your own ideas and fixes, please follow the guide found on
-the projects documentation website.
+the projects documentation website. **A helpful documentation about the code and roadmap of this project can be found in the "Developer info"
+located on the projects website.**
 
 ## Acknowledgements
 
