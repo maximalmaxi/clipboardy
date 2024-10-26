@@ -11,7 +11,7 @@ import customtkinter as ctk
 
 # File paths
 SAVE_FILE = 'package/clips.json'
-KEY_FILE = 'key.key'
+KEY_FILE = 'package/key.key'
 SETTINGS_FILE = 'package/settings.json'
 
 # Global variables
