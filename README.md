@@ -32,6 +32,9 @@ If you'd like to contribute to Clipboardy and add your own ideas and fixes, plea
 the projects documentation website. **A helpful documentation about the code and roadmap of this project can be found in the "Developer info"
 located on the projects website.**
 
+## Thanks to our contributors
+- jey-exp (https://github.com/jey-exp)
+
 ## Acknowledgements
 
  - [pyperclip for clipboard access](https://pypi.org/project/pyperclip/)
