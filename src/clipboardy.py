@@ -19,18 +19,18 @@ clipsObj = []
 cryptKey = None
 autosave = False
 # Just an example setting to showcase the new settings functionality thats now supporting multiple settings.
-setting2 = False
+darkmode = False
 lastClip = None
 
 def load_settings():
     """Load autosave setting from settings file."""
-    global autosave, setting2
+    global autosave, darkmode
     if os.path.exists(SETTINGS_FILE):
         with open(SETTINGS_FILE, 'r') as settings_file:
             try:
                 settings = json.load(settings_file)
                 autosave = settings.get("autosave", False)
-                setting2 = settings.get("setting2", False)
+                darkmode = settings.get("darkmode", False)
             except json.JSONDecodeError:
                 print("Settings file is corrupted. Using default settings.")
     return False
@@ -40,7 +40,7 @@ def save_settings():
     with open(SETTINGS_FILE, 'w') as settings_file:
         json.dump({
             "autosave": autosave,
-            "setting2": setting2,
+            "darkmode": darkmode,
         }, settings_file)
 
 def generate_key():
@@ -116,8 +116,11 @@ def delete_clip_from_ui(index):
 
 def UI():
     """Initialize and display the main UI."""
-    global autosave_loading, inputbar
-    ctk.set_appearance_mode("dark")
+    global autosave_loading, inputbar, darkmode
+    if darkmode == True:
+        ctk.set_appearance_mode("dark")
+    elif darkmode == False:
+        ctk.set_appearance_mode("light")
     ctk.set_default_color_theme("green")
 
     app = ctk.CTk()
@@ -161,17 +164,36 @@ def UI():
 
     ctk.CTkButton(button_frame, text="Save clip", command=save_clip).pack(padx=5, side="left")
     ctk.CTkButton(button_frame, text="Delete all", command=delete_all_clips).pack(padx=5, side="left")
-    ctk.CTkButton(button_frame, text="Settings", command=toggle_setting2).pack(padx=5, side="left")
+    ctk.CTkButton(button_frame, text="Settings", command=settings_UI).pack(padx=5, side="left")
 
     ctk.CTkLabel(app, text="🟢 Status: Running").pack(side="left", padx="10")
 
     app.mainloop()
 
-def toggle_setting2():
-    """Toggle setting2"""
-    global setting2
-    setting2 = not setting2
+def settings_UI():
+    settingsUI = ctk.CTk()
+    settingsUI.geometry("400x400")
+    settingsUI.title("Settings")
+
+    ctk.CTkLabel(settingsUI, text="Settings", font=('Calibri', 20)).pack(pady=(10, 5))
+
+    appearance_frame = ctk.CTkFrame(settingsUI)
+    appearance_frame.pack(pady=10, padx=10, fill='x')
+
+    ctk.CTkLabel(appearance_frame, text="Appearance", font=('Calibri', 18)).pack(pady=0)
+
+    switch = ctk.CTkSwitch(appearance_frame, text="Dark Mode", command=toggle_darkmode)
+    switch.pack(pady=5)
+    switch.select() if darkmode else switch.deselect()
+
+    settingsUI.mainloop()
+
+def toggle_darkmode():
+    """Toggle darkmode"""
+    global darkmode
+    darkmode = not darkmode
     save_settings()
+    refresh_ui()
 
 def toggle_autosave():
     """Enable or disable autosave and save the setting."""
@@ -216,6 +238,13 @@ def delete_all_clips():
     clipsObj = []
     save_clips()
     populate_clips_table(clips_frame)
+
+def refresh_ui():
+    """Refresh UI appearance mode."""
+    if darkmode:
+        ctk.set_appearance_mode("dark")
+    else:
+        ctk.set_appearance_mode("light")
 
 def search_clips(event=None):
     """Filter displayed clips based on search input."""
