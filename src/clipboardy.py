@@ -18,23 +18,30 @@ SETTINGS_FILE = 'package/settings.json'
 clipsObj = []
 cryptKey = None
 autosave = False
+# Just an example setting to showcase the new settings functionality thats now supporting multiple settings.
+setting2 = False
 lastClip = None
 
 def load_settings():
     """Load autosave setting from settings file."""
+    global autosave, setting2
     if os.path.exists(SETTINGS_FILE):
         with open(SETTINGS_FILE, 'r') as settings_file:
             try:
                 settings = json.load(settings_file)
-                return settings.get("autosave", False)
+                autosave = settings.get("autosave", False)
+                setting2 = settings.get("setting2", False)
             except json.JSONDecodeError:
                 print("Settings file is corrupted. Using default settings.")
     return False
 
 def save_settings():
-    """Save current autosave setting to settings file."""
+    """Save current settings to settings file."""
     with open(SETTINGS_FILE, 'w') as settings_file:
-        json.dump({"autosave": autosave}, settings_file)
+        json.dump({
+            "autosave": autosave,
+            "setting2": setting2,
+        }, settings_file)
 
 def generate_key():
     """Generate and save encryption key."""
@@ -154,11 +161,17 @@ def UI():
 
     ctk.CTkButton(button_frame, text="Save clip", command=save_clip).pack(padx=5, side="left")
     ctk.CTkButton(button_frame, text="Delete all", command=delete_all_clips).pack(padx=5, side="left")
-    ctk.CTkButton(button_frame, text="Settings").pack(padx=5, side="left")
+    ctk.CTkButton(button_frame, text="Settings", command=toggle_setting2).pack(padx=5, side="left")
 
     ctk.CTkLabel(app, text="🟢 Status: Running").pack(side="left", padx="10")
 
     app.mainloop()
+
+def toggle_setting2():
+    """Toggle setting2"""
+    global setting2
+    setting2 = not setting2
+    save_settings()
 
 def toggle_autosave():
     """Enable or disable autosave and save the setting."""
@@ -166,7 +179,6 @@ def toggle_autosave():
     if not autosave_loading:
         autosave = not autosave
         save_settings()
-    print(f"Auto-save is now {'on' if autosave else 'off'}.")
 
 def save_clip():
     """Save current clipboard content if available."""
@@ -217,7 +229,7 @@ def main():
     """Initialize and run the application."""
     global cryptKey, clipsObj, lastClip, autosave
 
-    autosave = load_settings()
+    load_settings()
 
     if not os.path.exists(KEY_FILE):
         cryptKey = generate_key()
