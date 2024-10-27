@@ -40,8 +40,8 @@
 
                 <div class="function">
                     <h2>load_settings()</h2>
-                    <p><strong>Purpose:</strong> Loads the autosave setting from a settings file.</p>
-                    <p><strong>Returns:</strong> <code>bool</code> - the autosave setting (defaults to
+                    <p><strong>Purpose:</strong> Loads settings from a settings file.</p>
+                    <p><strong>Returns:</strong> <code>bool</code> - the autosave setting and darkmode setting (defaults to
                         <code>False</code> if settings file is absent or corrupted).
                     </p>
                     <p><strong>Description:</strong> Reads the <code>settings.json</code> file to retrieve the
@@ -138,11 +138,31 @@
                 </div>
 
                 <div class="function">
+                    <h2>settings_UI()</h2>
+                    <p><strong>Purpose:</strong> Initializes and displays the settings UI for Clipboardy.</p>
+                    <p><strong>Description:</strong> Sets up the settings window with settings for darkmode and more coming soon.</p>
+                </div>
+
+                <div class="function">
                     <h2>toggle_autosave()</h2>
                     <p><strong>Purpose:</strong> Enables or disables autosave and saves the updated setting.</p>
                     <p><strong>Description:</strong> Switches the <code>autosave</code> state and calls
                         <code>save_settings()</code> to save it.
                     </p>
+                </div>
+
+                <div class="function">
+                    <h2>toggle_darkmode()</h2>
+                    <p><strong>Purpose:</strong> Enables or disables darkmode and saves the updated setting.</p>
+                    <p><strong>Description:</strong> Switches the <code>darkmode</code> state and calls
+                        <code>save_settings()</code> to save it.
+                    </p>
+                </div>
+                
+                <div class="function">
+                    <h2>refresh_ui()</h2>
+                    <p><strong>Purpose:</strong> Refresh UI depending on dark/light mode.</p>
+                    <p><strong>Description:</strong> It will refresh the UI accordingly to the darkmode variable.</p>
                 </div>
 
                 <div class="function">
