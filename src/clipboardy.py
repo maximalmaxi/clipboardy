@@ -8,6 +8,9 @@ from datetime import datetime
 from cryptography.fernet import Fernet
 import validators
 import customtkinter as ctk
+import textwrap
+from tkinter import messagebox
+import sys
 
 # File paths
 SAVE_FILE = 'package/clips.json'
@@ -18,7 +21,6 @@ SETTINGS_FILE = 'package/settings.json'
 clipsObj = []
 cryptKey = None
 autosave = False
-# Just an example setting to showcase the new settings functionality thats now supporting multiple settings.
 darkmode = False
 lastClip = None
 
@@ -98,14 +100,16 @@ def populate_clips_table(frame, clips_to_display=None):
 
     for index, clip in enumerate(clips_to_display):
         decrypted_clip = decrypt_clip(clip['clip'])
+
+        short_clip = textwrap.shorten(decrypted_clip, width=55, placeholder="...")
         
         # Display clip data in the table
         ctk.CTkLabel(frame, text=clip['date']).grid(row=index, column=0, padx=5, pady=5, sticky='w')
-        ctk.CTkLabel(frame, text=decrypted_clip).grid(row=index, column=1, padx=5, pady=5, sticky='w')
+        ctk.CTkLabel(frame, text=short_clip).grid(row=index, column=1, padx=5, pady=5, sticky='w')
         ctk.CTkLabel(frame, text=clip['type']).grid(row=index, column=2, padx=5, pady=5, sticky='w')
         
-        ctk.CTkButton(frame, text="🗒️", command=lambda c=decrypted_clip: pyperclip.copy(c), width=20).grid(row=index, column=3, padx=5, pady=5, sticky='e')
-        ctk.CTkButton(frame, text="❌", command=lambda i=index: delete_clip_from_ui(i), width=20).grid(row=index, column=4, padx=5, pady=5, sticky='e')
+        ctk.CTkButton(frame, text="📝", command=lambda c=decrypted_clip: pyperclip.copy(c), width=30).grid(row=index, column=3, padx=5, pady=5, sticky='e')
+        ctk.CTkButton(frame, text="❌", command=lambda i=index: delete_clip_from_ui(i), width=30).grid(row=index, column=4, padx=5, pady=5, sticky='e')
 
 def delete_clip_from_ui(index):
     """Delete a clip from the list and update UI."""
@@ -186,7 +190,24 @@ def settings_UI():
     switch.pack(pady=5)
     switch.select() if darkmode else switch.deselect()
 
+    danger_frame = ctk.CTkFrame(settingsUI)
+    danger_frame.pack(pady=10, padx=10, fill='x')
+
+    ctk.CTkLabel(danger_frame, text="Danger Zone", font=('Calibri', 18)).pack(pady=0)
+
+    delete_btn = ctk.CTkButton(danger_frame, text="Reset encryption key", command=delete_key)
+    delete_btn.pack(pady=5)
+
     settingsUI.mainloop()
+
+def delete_key():
+    response = messagebox.askyesno('Resetting encryption key', 'THIS WILL RESET THE ENCRYPTION KEY, and with this all your clips. Are you sure?')
+
+    if response:
+        os.remove(KEY_FILE)
+        os.remove(SAVE_FILE)
+        messagebox.showinfo('Resetting encryption key', 'Resetted encryption key, please restart the program.')
+        sys.exit()
 
 def toggle_darkmode():
     """Toggle darkmode"""
@@ -284,7 +305,7 @@ def monitor_clipboard():
             if current_clip != lastClip and current_clip not in [decrypt_clip(clip['clip']) for clip in clipsObj] and lastClip is not None:
                 save_clip()
                 lastClip = current_clip
-        time.sleep(1)
+        time.sleep(2)
 
 if __name__ == "__main__":
     main()
