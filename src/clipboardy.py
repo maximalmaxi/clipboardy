@@ -23,6 +23,7 @@ cryptKey = None
 autosave = False
 darkmode = False
 lastClip = None
+selected_type_filter = "All"
 
 def load_settings():
     """Load autosave setting from settings file."""
@@ -119,11 +120,11 @@ def delete_clip_from_ui(index):
         populate_clips_table(clips_frame)
 
 def UI():
-    """Initialize and display the main UI."""
-    global autosave_loading, inputbar, darkmode
-    if darkmode == True:
+    # Initialize and display the main UI
+    global autosave_loading, inputbar, darkmode, filter_select, app, icon
+    if darkmode:
         ctk.set_appearance_mode("dark")
-    elif darkmode == False:
+    else:
         ctk.set_appearance_mode("light")
     ctk.set_default_color_theme("green")
 
@@ -139,8 +140,17 @@ def UI():
     mainframe.pack(pady="10")
     mainframe.pack_propagate(False)
 
-    inputbar = ctk.CTkEntry(mainframe, placeholder_text="Search your clips", width=650, height=30)
-    inputbar.pack(pady="10")
+    # Define a frame for the input bar and filter, then pack them in one row
+    input_frame = ctk.CTkFrame(mainframe)
+    input_frame.pack(pady=10)
+
+    inputbar = ctk.CTkEntry(input_frame, placeholder_text="Search your clips", width=520, height=30)
+    filter_select = ctk.CTkComboBox(input_frame, values=["All", "Text", "URL", "Email", "IPv4", "IPv6", "Credit Card"], command=apply_filter ,width=110)
+    filter_select.set("All")
+    
+    inputbar.pack(side="left", padx=(10, 5))
+    filter_select.pack(side="left", padx=(5, 10))
+
     inputbar.bind("<KeyRelease>", search_clips)
 
     global clips_frame
@@ -209,6 +219,17 @@ def delete_key():
         messagebox.showinfo('Resetting encryption key', 'Resetted encryption key, please restart the program.')
         sys.exit()
 
+def apply_filter(choice):
+    """Update type filter based on user selection"""
+    global selected_type_filter
+    selected_type_filter = choice
+    filtered_clips = [
+        clip for clip in clipsObj
+        if (selected_type_filter == "All" or clip["type"] == selected_type_filter)
+    ]
+
+    populate_clips_table(clips_frame, filtered_clips)
+
 def toggle_darkmode():
     """Toggle darkmode"""
     global darkmode
@@ -225,6 +246,9 @@ def toggle_autosave():
 
 def save_clip():
     """Save current clipboard content if available."""
+    global filter_select
+    filter_select.set("All")
+
     current_clip = pyperclip.paste()
     content_type = determine_content_type(current_clip)
 
