@@ -2,6 +2,10 @@
 
 Clipboardy is a user-friendly clipboard management application that allows you to save, organize, and encrypt your clipboard clips. With features like auto-saving, clipboard monitoring, and support for various content types, Clipboardy enhances your clipboard experience.
 
+## Screenshots
+<img src="https://raw.githubusercontent.com/maximalmaxx/clipboardy/gh-pages/Showcase1.png" alt="Picture 1" width="300"/>
+<img src="https://raw.githubusercontent.com/maximalmaxx/clipboardy/gh-pages/Showcase2.png" alt="Picture 2" width="300"/>
+
 ## Features
 
 - **Secure Storage**: Encrypts your clipboard content for privacy using cryptography.
@@ -21,6 +25,7 @@ Before you begin, ensure you have met the following requirements:
   - `cryptography`
   - `validators`
   - `customtkinter`
+  - More is on the projects website
 
 ## Installation
 
