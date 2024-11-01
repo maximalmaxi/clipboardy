@@ -1,4 +1,10 @@
 # Clipboardy
+![Static Badge](https://img.shields.io/badge/Clipboardy-Clipboard%20management-blue)
+![GitHub Release](https://img.shields.io/github/v/release/maximalmaxx/clipboardy)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/maximalmaxx/clipboardy)
+![GitHub License](https://img.shields.io/github/license/maximalmaxx/clipboardy)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/maximalmaxx/clipboardy/total)
+![GitHub forks](https://img.shields.io/github/forks/maximalmaxx/clipboardy)
 
 Clipboardy is a user-friendly clipboard management application that allows you to save, organize, and encrypt your clipboard clips. With features like auto-saving, clipboard monitoring, and support for various content types, Clipboardy enhances your clipboard experience.
 
