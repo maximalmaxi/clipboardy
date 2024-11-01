@@ -11,14 +11,11 @@ import customtkinter as ctk
 import textwrap
 from tkinter import messagebox
 import sys
-import requests
-import zipfile
 
 # File paths
 SAVE_FILE = 'package/clips.json'
 KEY_FILE = 'package/key.key'
 SETTINGS_FILE = 'package/settings.json'
-VER_FILE = 'package/ver.txt'
 
 # Global variables
 clipsObj = []
@@ -28,80 +25,6 @@ darkmode = False
 lastClip = None
 selected_type_filter = "All"
 
-with open(VER_FILE, "r") as version:
-    global current_version
-    current_version = version.read()
-
-import shutil
-
-def check_for_update():
-    global current_version
-
-    url = "https://api.github.com/repos/maximalmaxx/clipboardy/releases/latest"
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an error for bad responses
-        latest_version = response.json()["tag_name"]
-        download_url = response.json()["assets"][0]["browser_download_url"]
-
-        if latest_version != current_version:
-            # Check for fundamental changes
-            if "f" in latest_version:
-                messagebox.askyesno(
-                    'Clipboardy Update Available!',
-                    'There is a new version of Clipboardy which changes the fundamental structure. '
-                    'To download it, please download the latest GitHub release.'
-                )
-            else:
-                downloadyesno = messagebox.askyesno(
-                    'Clipboardy Update Available!',
-                    f'A new version of Clipboardy {latest_version} is available and can be downloaded. '
-                    'Do you want to install it now? Make sure to have a stable internet connection.'
-                )
-
-                if downloadyesno:
-                    update_response = requests.get(download_url)
-                    update_response.raise_for_status()  # Raise an error if the download fails
-
-                    # Create a temporary directory for the update
-                    temp_update_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "temp_update")
-                    os.makedirs(temp_update_dir, exist_ok=True)
-
-                    # Save the update file in the temporary directory
-                    update_zip_path = os.path.join(temp_update_dir, "update.zip")
-
-                    with open(update_zip_path, "wb") as file:
-                        file.write(update_response.content)
-
-                    # Extract the update to the temporary directory
-                    with zipfile.ZipFile(update_zip_path, "r") as zip_ref:
-                        zip_ref.extractall(temp_update_dir)
-
-                    # Move the new executable file to the current directory
-                    new_executable_path = os.path.join(temp_update_dir, "clipboardy.exe")
-                    if os.path.exists(new_executable_path):
-                        # Remove the old executable and replace it with the new one
-                        old_executable_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "clipboardy.exe")
-                        if os.path.exists(old_executable_path):
-                            os.remove(old_executable_path)
-                        os.rename(new_executable_path, old_executable_path)
-
-                    # Clean up: Remove the temporary directory and its contents
-                    shutil.rmtree(temp_update_dir)  # Use shutil to remove the directory and all its contents
-
-                    print("Update applied successfully!")
-                    messagebox.showinfo('Clipboardy Update', f'Success! Clipboardy version {latest_version} has been downloaded.')
-                    with open(VER_FILE, 'w') as version:
-                        version.write(latest_version)
-        else:
-            print("You're up to date!")  # Optional confirmation for the console
-            main()
-    except requests.RequestException as e:
-        messagebox.showerror("Error", f"Failed to check for updates: {e}")
-    except Exception as e:
-        messagebox.showerror("Error (Why always during updates??)", f"An unexpected error occurred, sorry: {e}")
-
-    
 def load_settings():
     """Load autosave setting from settings file."""
     global autosave, darkmode
@@ -409,5 +332,4 @@ def monitor_clipboard():
         time.sleep(2)
 
 if __name__ == "__main__":
-    main() # Skipping the update check for debugging purposes, if you want to enable it, replace "main()" with "check_for_update()"
-    # The real release has "check_for_update()" here instead to automatically download new versions
+    main()
