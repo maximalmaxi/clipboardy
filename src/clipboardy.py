@@ -13,6 +13,7 @@ from tkinter import messagebox
 import sys
 
 # File paths
+PACKAGE_FOLDER = 'package'
 SAVE_FILE = 'package/clips.json'
 KEY_FILE = 'package/key.key'
 SETTINGS_FILE = 'package/settings.json'
@@ -25,6 +26,13 @@ darkmode = False
 lastClip = None
 selected_type_filter = "All"
 
+if not os.path.exists(PACKAGE_FOLDER):
+    response = messagebox.askyesno('No package folder found', 'Could not find folder named "package". Should clipboardy create the folder in this directory? It is necessary for it to work.')
+    if response:
+        os.makedirs(PACKAGE_FOLDER)
+    else:
+        messagebox.showinfo('Did not create folder "package"', 'Make sure to have a folder named "package" in the same directory as clipboardy for it to work.')
+        sys.exit()
 def load_settings():
     """Load autosave setting from settings file."""
     global autosave, darkmode
