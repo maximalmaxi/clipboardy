@@ -25,6 +25,7 @@ autosave = False
 darkmode = False
 lastClip = None
 selected_type_filter = "All"
+selected_color = "blue"
 
 if not os.path.exists(PACKAGE_FOLDER):
     response = messagebox.askyesno('No package folder found', 'Could not find folder named "package". Should clipboardy create the folder in this directory? It is necessary for it to work.')
@@ -33,18 +34,22 @@ if not os.path.exists(PACKAGE_FOLDER):
     else:
         messagebox.showinfo('Did not create folder "package"', 'Make sure to have a folder named "package" in the same directory as clipboardy for it to work.')
         sys.exit()
+
 def load_settings():
     """Load autosave setting from settings file."""
-    global autosave, darkmode
+    global autosave, darkmode, selected_color
     if os.path.exists(SETTINGS_FILE):
         with open(SETTINGS_FILE, 'r') as settings_file:
             try:
                 settings = json.load(settings_file)
                 autosave = settings.get("autosave", False)
                 darkmode = settings.get("darkmode", False)
+                selected_color = settings.get("color", "green")
+                ctk.set_default_color_theme(selected_color)
             except json.JSONDecodeError:
                 print("Settings file is corrupted. Using default settings.")
     return False
+
 
 def save_settings():
     """Save current settings to settings file."""
@@ -52,6 +57,7 @@ def save_settings():
         json.dump({
             "autosave": autosave,
             "darkmode": darkmode,
+            "color": selected_color,
         }, settings_file)
 
 def generate_key():
@@ -129,7 +135,7 @@ def delete_clip_from_ui(index):
 
 def UI():
     # Initialize and display the main UI
-    global autosave_loading, inputbar, darkmode, filter_select, app, icon
+    global autosave_loading, inputbar, darkmode, filter_select, app, icon, selected_color
     if darkmode:
         ctk.set_appearance_mode("dark")
     else:
@@ -208,6 +214,10 @@ def settings_UI():
     switch.pack(pady=5)
     switch.select() if darkmode else switch.deselect()
 
+    dropdown = ctk.CTkComboBox(appearance_frame, values=["green", "blue", "dark-blue"], command=apply_color)
+    dropdown.pack()
+    dropdown.set(selected_color)
+
     danger_frame = ctk.CTkFrame(settingsUI)
     danger_frame.pack(pady=10, padx=10, fill='x')
 
@@ -238,12 +248,19 @@ def apply_filter(choice):
 
     populate_clips_table(clips_frame, filtered_clips)
 
+def apply_color(choice):
+    """Apply the chosen color"""
+    global selected_color
+    selected_color = choice
+    save_settings()
+    refresh_ui("color")
+
 def toggle_darkmode():
     """Toggle darkmode"""
     global darkmode
     darkmode = not darkmode
     save_settings()
-    refresh_ui()
+    refresh_ui("darkmode")
 
 def toggle_autosave():
     """Enable or disable autosave and save the setting."""
@@ -292,12 +309,14 @@ def delete_all_clips():
     save_clips()
     populate_clips_table(clips_frame)
 
-def refresh_ui():
-    """Refresh UI appearance mode."""
-    if darkmode:
-        ctk.set_appearance_mode("dark")
-    else:
-        ctk.set_appearance_mode("light")
+def refresh_ui(component):
+    if component == "darkmode":
+        ctk.set_appearance_mode("dark" if darkmode else "light")
+    
+    elif component == "color":
+        ctk.set_default_color_theme(selected_color)  # FIXME: Doesnt work, probably a customtkinter issue
+        messagebox.showinfo('Changed color', 'Please restart Clipboardy for the changes to apply.')
+    app.update()
 
 def search_clips(event=None):
     """Filter displayed clips based on search input."""
