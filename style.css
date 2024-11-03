@@ -58,6 +58,7 @@ p {
 }
 
 .card {
+    transition-duration: 0.5s;
     background-color: #e2e4e5;
     border-radius: 20px;
     padding: 1.5rem;
@@ -66,33 +67,30 @@ p {
     text-align: center;
 }
 
+.card:hover {
+    box-shadow: 0 5px 25px rgb(121, 121, 121);
+    transform: scale(1.05);
+}
+
 .images-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    /* Adjust gap for images */
     margin-bottom: 2rem;
-    /* Space below the image grid */
 }
 
 .images-grid img {
     border-radius: 10px;
-    /* Rounded corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
     transition: transform 0.3s, box-shadow 0.3s;
-    /* Transition for hover effects */
     max-width: 100%;
-    /* Ensure responsive behavior */
     height: auto;
-    /* Maintain aspect ratio */
 }
 
 .images-grid img:hover {
+    box-shadow: 0 5px 25px rgb(121, 121, 121);
     transform: scale(1.05);
-    /* Slightly enlarge on hover */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    /* Stronger shadow on hover */
 }
 
 footer {
