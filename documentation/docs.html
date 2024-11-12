@@ -7,6 +7,32 @@
     <title>Clipboardy Documentation</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <style>
+        .copy-link-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            margin-left: 8px;
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .copy-link-btn:hover {
+            color: #0056b3;
+        }
+    </style>
+    <script>
+        function copyLink(id) {
+            const baseUrl = window.location.href.split('#')[0];
+            const link = `${baseUrl}${id}`;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Error copying link: ', err);
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -25,16 +51,21 @@
                 </ul>
             </nav>
         </aside>
+
         <main class="content">
             <section id="introduction">
-                <h1>Introduction</h1>
+                <h1>Introduction
+                    <button onclick="copyLink('#introduction')" class="copy-link-btn">🔗</button>
+                </h1>
                 <p>Welcome to the Clipboardy documentation. This guide will help you navigate the features and
                     functionality of Clipboardy, along with tutorials on installation and contributing via GitHub.</p>
                 <strong>Note: Installation assumes basic familiarity with programming and GitHub.</strong>
             </section>
 
             <section id="getting-started">
-                <h1>Getting Started</h1>
+                <h1>Getting Started
+                    <button onclick="copyLink('#getting-started')" class="copy-link-btn">🔗</button>
+                </h1>
                 <p>This step-by-step guide will help you get Clipboardy up and running.</p>
 
                 <h3>Prerequisites</h3>
@@ -80,17 +111,21 @@
             </section>
 
             <section id="download">
-                <h1>Download</h1>
+                <h1>Download
+                    <button onclick="copyLink('#download')" class="copy-link-btn">🔗</button>
+                </h1>
                 <p>This guide is about simply downloading the .exe file for personal use rather than contributing.</p>
                 <h2>Prerequisites</h2>
-                <p>You dont need any other software for this .exe file to work. You only need to download the .exe from
+                <p>You don’t need any other software for this .exe file to work. You only need to download the .exe from
                     the latest release and <strong>unzip the .zip file</strong> to run the "clipboardy.exe" file.</p>
                 <h2>Installation</h2>
                 <a href="https://github.com/maximalmaxx/clipboardy/releases">latest release on GitHub</a>
             </section>
 
             <section id="features">
-                <h1>Features</h1>
+                <h1>Features
+                    <button onclick="copyLink('#features')" class="copy-link-btn">🔗</button>
+                </h1>
                 <h2>Saving Clipboards</h2>
                 <h3>Encryption/Decryption</h3>
                 <p>All your saved clips (clipboard entries) will be encrypted for safety and automatically decrypted
@@ -116,7 +151,9 @@
             </section>
 
             <section id="contributing">
-                <h1>Contributing</h1>
+                <h1>Contributing
+                    <button onclick="copyLink('#contributing')" class="copy-link-btn">🔗</button>
+                </h1>
                 <p>If you want to support the Clipboardy project and add your own ideas and improvements, please follow
                     these guidelines:</p>
 
@@ -172,10 +209,14 @@
                     interest
                     in contributing to this project and your effort!</p>
             </section>
+
             <section id="github">
-                <h1>GitHub</h1>
-                <p>The GitHub repository containing all scripts and files for the installation can be found <a
-                        href="https://github.com/maximalmaxx/clipboardy">here</a></p>
+                <h1>GitHub
+                    <button onclick="copyLink('#github')" class="copy-link-btn">🔗</button>
+                </h1>
+                <p>Clipboardy is an open-source project hosted on GitHub. You can check out the codebase and contribute
+                    at:</p>
+                <a href="https://github.com/maximalmaxx/clipboardy">Clipboardy GitHub Repository</a>
             </section>
         </main>
     </div>
