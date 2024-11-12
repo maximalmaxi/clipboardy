@@ -37,7 +37,7 @@ body {
 .sidebar h2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #1abc9c;
+    border-bottom: 2px solid #4d5deb;
     /* Border below header */
     padding-bottom: 0.5rem;
 }
@@ -63,7 +63,7 @@ body {
 }
 
 .sidebar nav ul li a:hover {
-    color: #1abc9c;
+    color: #afafaf;
     padding-left: 1rem;
     /* Shift link on hover */
 }
