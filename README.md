@@ -76,6 +76,7 @@ Clipboardy is licensed under the [MIT License](https://choosealicense.com/licens
 
 A huge thank you to everyone who has contributed to Clipboardy! Special thanks to:
 - **[@jey-exp](https://github.com/jey-exp)**
+- **[@YogeshK34](https://github.com/YogeshK34)**
 
 ---
 
