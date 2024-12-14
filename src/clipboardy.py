@@ -12,6 +12,8 @@ import textwrap
 from tkinter import messagebox
 import sys
 
+
+# check
 # File paths
 PACKAGE_FOLDER = 'package'
 SAVE_FILE = 'package/clips.json'
